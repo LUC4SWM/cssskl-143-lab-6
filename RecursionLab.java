@@ -51,9 +51,13 @@ public class RecursionLab {
         System.exit(0);
 
         */
-        System.out.println("Input: 4 --- Expected: 24 | Actual: " + recursiveFactorial(4));
-        System.out.println("Input: 6 --- Expected: 720 | Actual: " + recursiveFactorial(6));
-        System.out.println("Input: 8 --- Expected: 40320 | Actual: " + recursiveFactorial(8));
+//        System.out.println("Input: 4 --- Expected: 24 | Actual: " + factorial(4));
+//        System.out.println("Input: 6 --- Expected: 720 | Actual: " + factorial(6));
+//        System.out.println("Input: 8 --- Expected: 40320 | Actual: " + factorial(8));
+
+        System.out.println("Inputs: 4^3 --- Expected: 64 | Actual: " + bruteForcePow(4,3));
+        System.out.println("Inputs: 2^7 --- Expected: 128 | Actual: " + bruteForcePow(2,7));
+        System.out.println("Inputs: 6^2 --- Expected: 36 | Actual: " + bruteForcePow(6,2));
     }
 
     /**
@@ -129,12 +133,23 @@ public class RecursionLab {
         myArea.setText(text);
     }
 
-    public static int recursiveFactorial(int n){ //
+    public static int factorial(int n){ // Q1:
     if (n == 1) {
         return 1;
     } else {
-        return (n * recursiveFactorial(n-1));
+        return (n * factorial(n-1));
+        }
     }
 
+    public static int bruteForcePow(int x, int n){ // Q2.1:
+        if (n == 0){
+            return 1;
+        } else if (n % 2 == 0) {
+            return (bruteForcePow(x, n/2) * bruteForcePow(x, n/2));
+        } else {
+            return (x * bruteForcePow(x, (n-1)/2) * bruteForcePow(x, (n-1)/2));
+        }
+
     }
+
 }
