@@ -77,16 +77,16 @@ class PolyDemo extends JFrame {
              *******************************/
             switch ((int) (Math.random() * 4)) {
                 case 0:
-                    retVal = new Spray(x, y); // new Square(x, y, getRandInt(), getRandInt());
+                 //   retVal = new Spray(x, y); // new Square(x, y, getRandInt(), getRandInt());
                     break;
                 case 1:
-                    retVal = new Spray(x, y); // Cube(x, y, getRandInt(), getRandInt(), getRandInt());
+                   // retVal = new Spray(x, y); // Cube(x, y, getRandInt(), getRandInt(), getRandInt());
                     break;
                 case 2:
-                    retVal = new Spray(x, y);
+                   // retVal = new Spray(x, y);
                     break;
                 case 3:
-                    retVal = new Spray(x, y); // new Circle(x, y, getRandInt()); // new Cylinder(x, y, getRandInt(), getRandInt());
+                   // retVal = new Spray(x, y); // new Circle(x, y, getRandInt()); // new Cylinder(x, y, getRandInt(), getRandInt());
                     break;
             }
 
