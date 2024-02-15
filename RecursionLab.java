@@ -19,8 +19,6 @@
  *
  *----------------------------------------------------------------------------------- */
 
-import java.awt.Dimension;
-
 import javax.swing.*;
 
 public class RecursionLab {
@@ -55,9 +53,19 @@ public class RecursionLab {
 //        System.out.println("Input: 6 --- Expected: 720 | Actual: " + factorial(6));
 //        System.out.println("Input: 8 --- Expected: 40320 | Actual: " + factorial(8));
 
-        System.out.println("Inputs: 4^3 --- Expected: 64 | Actual: " + bruteForcePow(4,3));
-        System.out.println("Inputs: 2^7 --- Expected: 128 | Actual: " + bruteForcePow(2,7));
-        System.out.println("Inputs: 6^2 --- Expected: 36 | Actual: " + bruteForcePow(6,2));
+        //System.out.println("Inputs: 4^3 --- Expected: 64 | Actual: " + OptimizedPow(4,3));
+        long bfTime = System.nanoTime();
+        bruteForcePow(5, 20);
+        bfTime = System.nanoTime() - bfTime;
+
+        long oTime = System.nanoTime();
+        optimizedPow(23, 2301200);
+        oTime = System.nanoTime() - oTime;
+        System.out.println("Brute-Force Time: " + bfTime + " nanoseconds | Optimized Time: " + oTime + " nanoseconds");
+        // BruteForce times: 82913135183700, 82928167425400, 82937373012600, 83011440673700, 83023714222400
+        // Optimized  times: 83047236859300, 83061780400300, 83080262921400, 83102769647600, 83117557496900
+
+        //Q2.5: I'm not sure why, I feel like I did it wrong somehow, but the Optimized time is longer than the Brute-Force time. The gap even widened when n increased.
     }
 
     /**
@@ -141,15 +149,23 @@ public class RecursionLab {
         }
     }
 
-    public static int bruteForcePow(int x, int n){ // Q2.1:
+   public static int bruteForcePow(int x, int n){
+        if (n == 0){
+            return 1;
+        } else {
+            return x * bruteForcePow(x, n-1);
+        }
+
+   }
+    public static int optimizedPow(int x, int n){ // Q2.2:
         if (n == 0){
             return 1;
         } else if (n % 2 == 0) {
-            return (bruteForcePow(x, n/2) * bruteForcePow(x, n/2));
+            return (optimizedPow(x, n/2) * optimizedPow(x, n/2));
         } else {
-            return (x * bruteForcePow(x, (n-1)/2) * bruteForcePow(x, (n-1)/2));
+            return (x * optimizedPow(x, (n-1)/2) * optimizedPow(x, (n-1)/2));
         }
-
     }
+
 
 }
