@@ -20,6 +20,7 @@
  *----------------------------------------------------------------------------------- */
 
 import javax.swing.*;
+import java.math.BigInteger;
 
 public class RecursionLab {
     private static JTextArea myArea = new JTextArea();
@@ -70,7 +71,10 @@ public class RecursionLab {
 //        System.out.println("Input: 4 --- Expected: 3 | Actual: " + fib(4));
 //       System.out.println("Input: 7 --- Expected: 13 | Actual: " + fib(7));
 //        System.out.println("Input: 2 --- Expected: 1 | Actual: " + fib(2));
-
+        System.out.println("Combinations/'N Choose R' Test: ");
+       System.out.println("Input: n = 6, r = 2 --- Expected: 15 | Actual: " + C(6,2));
+       System.out.println("Input: n = 25, r = 3 --- Expected: 2300 | Actual: " + C(25,3));
+        System.out.println("Input: n = 18, r = 4 --- Expected: 3060 | Actual: " + C(18,4));
     }
 
     /**
@@ -146,11 +150,14 @@ public class RecursionLab {
         myArea.setText(text);
     }
     // Q1.1:
-    public static int factorial(int n){ // Q1:
-    if (n == 1) {
-        return 1;
+    public static BigInteger factorial(BigInteger n){ // Q1:
+    if (n.compareTo(BigInteger.ZERO) < 0){
+        throw new IllegalArgumentException("Input must be a non-negative number");
+    }
+    if (n.compareTo(BigInteger.ONE) <= 0) {
+        return BigInteger.ONE;
     } else {
-        return (n * factorial(n-1));
+        return (n.multiply(factorial(n.subtract(BigInteger.ONE))));
         }
     }
     // Q2.1:
@@ -172,7 +179,7 @@ public class RecursionLab {
             return (x * optimizedPow(x, (n-1)/2) * optimizedPow(x, (n-1)/2));
         }
     }
-
+    // Q3.1:
     public static int fib(int n){
         if (n < 2){
             return n;
@@ -180,5 +187,14 @@ public class RecursionLab {
             return fib(n-1) + fib(n-2);
         }
     }
-
+    // Q4.2:
+    public static BigInteger C(int n, int r) {
+        if (n >= r && r >= 0) {
+            BigInteger num = factorial(BigInteger.valueOf(n));
+            BigInteger denom = factorial(BigInteger.valueOf(r)).multiply(factorial(BigInteger.valueOf(n-r)));
+            return num.divide(denom);
+        } else {
+            throw new IllegalArgumentException("Invalid input for combinations (C)");
+        }
+    }
 }
