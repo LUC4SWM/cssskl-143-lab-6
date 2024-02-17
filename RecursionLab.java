@@ -54,18 +54,23 @@ public class RecursionLab {
 //        System.out.println("Input: 8 --- Expected: 40320 | Actual: " + factorial(8));
 
         //System.out.println("Inputs: 4^3 --- Expected: 64 | Actual: " + OptimizedPow(4,3));
-        long bfTime = System.nanoTime();
-        bruteForcePow(5, 20);
-        bfTime = System.nanoTime() - bfTime;
-
-        long oTime = System.nanoTime();
-        optimizedPow(23, 2301200);
-        oTime = System.nanoTime() - oTime;
-        System.out.println("Brute-Force Time: " + bfTime + " nanoseconds | Optimized Time: " + oTime + " nanoseconds");
+        //long bfTime = System.nanoTime();
+        //bruteForcePow(5, 20);
+        //bfTime = System.nanoTime() - bfTime;
+        //long oTime = System.nanoTime();
+        //optimizedPow(23, 2301200);
+        //oTime = System.nanoTime() - oTime;
+        //System.out.println("Brute-Force Time: " + bfTime + " nanoseconds | Optimized Time: " + oTime + " nanoseconds");
         // BruteForce times: 82913135183700, 82928167425400, 82937373012600, 83011440673700, 83023714222400
         // Optimized  times: 83047236859300, 83061780400300, 83080262921400, 83102769647600, 83117557496900
 
         //Q2.5: I'm not sure why, I feel like I did it wrong somehow, but the Optimized time is longer than the Brute-Force time. The gap even widened when n increased.
+
+//        System.out.println("Fibonacci Test: ");
+//        System.out.println("Input: 4 --- Expected: 3 | Actual: " + fib(4));
+//       System.out.println("Input: 7 --- Expected: 13 | Actual: " + fib(7));
+//        System.out.println("Input: 2 --- Expected: 1 | Actual: " + fib(2));
+
     }
 
     /**
@@ -140,7 +145,7 @@ public class RecursionLab {
 
         myArea.setText(text);
     }
-
+    // Q1.1:
     public static int factorial(int n){ // Q1:
     if (n == 1) {
         return 1;
@@ -148,7 +153,7 @@ public class RecursionLab {
         return (n * factorial(n-1));
         }
     }
-
+    // Q2.1:
    public static int bruteForcePow(int x, int n){
         if (n == 0){
             return 1;
@@ -157,7 +162,8 @@ public class RecursionLab {
         }
 
    }
-    public static int optimizedPow(int x, int n){ // Q2.2:
+    // Q2.2:
+    public static int optimizedPow(int x, int n){
         if (n == 0){
             return 1;
         } else if (n % 2 == 0) {
@@ -167,5 +173,12 @@ public class RecursionLab {
         }
     }
 
+    public static int fib(int n){
+        if (n < 2){
+            return n;
+        } else {
+            return fib(n-1) + fib(n-2);
+        }
+    }
 
 }
